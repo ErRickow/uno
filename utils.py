@@ -81,11 +81,21 @@ def error(update: Update, context: CallbackContext):
     """Simple error handler"""
     logger.exception(context.error)
 
-    # Kirim pesan error ke grup log
-    log_group_id = '-1002423575637'  # Ganti dengan ID grup log Anda
-    error_message = f"Error occurred: {context.error}\nUpdate: {update}"
+    if update:
+        user = update.effective_user  # Pengguna yang memicu error
+        chat = update.effective_chat  # Chat tempat error terjadi
+        message = update.message  # Pesan yang memicu error (jika ada)
+
+        # Contoh log detail
+        error_message = (
+            f"Error occurred in chat {chat.id} by user {user.id} ({user.username}): "
+            f"{context.error}\nUpdate: {update}"
+        )
+    else:
+        error_message = f"<b>ERROR ANJENG</b>: <pre>{context.error}</pre>"
 
     # Kirim pesan ke grup log
+    log_group_id = '-1002423575637'
     send_async(chat_id=log_group_id, text=error_message)
 
 def send_async(bot, *args, **kwargs):

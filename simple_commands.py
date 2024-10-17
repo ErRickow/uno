@@ -132,15 +132,15 @@ def stats(update: Update, context: CallbackContext):
         n = us.first_places
         m = round((us.first_places / us.games_played) * 100) if us.games_played else 0
         stats_text.append(
-            _("{number} juara pertama ({percent}%)",
-              "{number} juara pertama ({percent}%)",
+            _("<blockquote>{number} juara pertama ({percent}%)</blockquote>",
+              "<blockquote>{number} juara pertama ({percent}%)</blockquote>",
               n).format(number=n, percent=m)
         )
 
         n = us.cards_played
         stats_text.append(
-            _("{number} kartu dimainkan",
-              "{number} kartu dimainkan",
+            _("<blockquote>{number} kartu dimainkan</blockquote>",
+              "<blockquote>{number} kartu dimainkan</blockquote>",
               n).format(number=n)
         )
 
@@ -152,5 +152,5 @@ def register():
     dispatcher.add_handler(CommandHandler('help', help_handler))
     dispatcher.add_handler(CommandHandler('info', source))
     dispatcher.add_handler(CommandHandler('news', news))
-    dispatcher.add_handler(CommandHandler('stat', stats))
+    dispatcher.add_handler(CommandHandler('stats', stats))
     dispatcher.add_handler(CommandHandler('mode', modes))

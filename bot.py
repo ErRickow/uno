@@ -200,7 +200,7 @@ def leave_game(update: Update, context: CallbackContext):
         send_async(context.bot, chat.id, text=__("Permainan berakhir!", multi=game.translate))
 
     else:
-        if game sudah dimulai:
+        if game.started:
             send_async(context.bot, chat.id,
                        text=__("Oke. Pemain Berikutnya: {name}",
                                multi=game.translate).format(

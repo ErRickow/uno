@@ -80,13 +80,13 @@ def help_handler(update: Update, context: CallbackContext):
 @user_locale
 def modes(update: Update, context: CallbackContext):
     """Handler untuk perintah /help"""
-    modes_explanation = _("Bot UNO ini memiliki empat mode permainan: Klasik, Sanic, Wild, dan Teks.\n\n"
-      " 🎻 Mode Klasik menggunakan dek UNO konvensional dan tidak ada auto skip.\n"
-      " 🚀 Mode Sanic menggunakan dek UNO konvensional dan bot secara otomatis melewati pemain jika dia terlalu lama bermain.\n"
-      " 🐉 Mode Wild menggunakan dek dengan lebih banyak kartu spesial, variasi angka yang lebih sedikit, dan tidak ada auto skip.\n"
-      " ✍️ Mode Teks menggunakan dek UNO konvensional, tetapi alih-alih stiker, mode ini menggunakan teks.\n\n"
-      "Untuk mengubah mode permainan, PEMBUAT PERMAINAN harus mengetik nama panggilan bot dan spasi, "
-      "seperti saat bermain kartu, dan semua opsi mode permainan akan muncul.")
+    modes_explanation = _("<blockquote>Bot UNO ini memiliki empat mode permainan: Klasik, Sanic, Wild, dan Teks.</blockquote>\n\n"
+      "<blockquote><pre> 🎻 Mode Klasik menggunakan dek UNO konvensional dan tidak ada auto skip.</pre>\n"
+      "<pre> 🚀 Mode Sanic menggunakan dek UNO konvensional dan bot secara otomatis melewati pemain jika dia terlalu lama bermain.</pre>\n"
+      "<pre> 🐉 Mode Wild menggunakan dek dengan lebih banyak kartu spesial, variasi angka yang lebih sedikit, dan tidak ada auto skip.</pre>\n"
+      "<pre> ✍️ Mode Teks menggunakan dek UNO konvensional, tetapi alih-alih stiker, mode ini menggunakan teks.</pre></blockquote>\n\n"
+      "<blockquote>Untuk mengubah mode permainan, PEMBUAT PERMAINAN harus mengetik nama panggilan bot dan spasi, "
+      "seperti saat bermain kartu, dan semua opsi mode permainan akan muncul.</blockquote>")
     send_async(context.bot, update.message.chat_id, text=modes_explanation,
                parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 

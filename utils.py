@@ -88,8 +88,8 @@ def error(update: Update, context: CallbackContext):
 
         # Contoh log detail
         error_message = (
-            f"Error occurred in chat {chat.id} by user {user.id} ({user.username}): "
-            f"{context.error}\nUpdate: {update}"
+            f"<b>Error occurred in chat {chat.id} by user {user.id} ({user.username}):</b> "
+            f"<pre>{context.error}</pre>\nUpdate: {update}"
         )
     else:
         error_message = f"<b>ERROR ANJENG</b>: <pre>{context.error}</pre>"

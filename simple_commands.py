@@ -93,10 +93,10 @@ def modes(update: Update, context: CallbackContext):
 @user_locale
 def source(update: Update, context: CallbackContext):
     """Handler untuk perintah /help"""
-    source_text = _("Bot ini dikembangkan oleh @chakszzz, seorang developer yang berdedikasi\n"
+    source_text = _("<blockquote>Bot ini dikembangkan oleh @chakszzz, seorang developer yang berdedikasi\n"
       "untuk menciptakan pengalaman permainan yang seru dan menyenangkan. \n"
       "Jika Anda memiliki saran, ingin berkontribusi, atau hanya ingin mengobrol, "
-      "Anda bisa menghubungi langsung melalui Telegram.\n")
+      "Anda bisa menghubungi langsung melalui Telegram.</blockquote>\n")
 
     attributions = _("Hubungi developer di Telegram: @chakszzz")
 

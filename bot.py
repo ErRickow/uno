@@ -31,8 +31,7 @@ import settings
 import simple_commands
 from actions import do_skip, do_play_card, do_draw, do_call_bluff, start_player_countdown
 from config import WAITING_TIME, DEFAULT_GAMEMODE, MIN_PLAYERS
-from errors import (NoGameInChatError, LobbyClosedError, AlreadyJoinedError,
-                    NotEnoughPlayersError, DeckEmptyError)
+from errors import (NoGameInChatError, LobbyClosedError, AlreadyJoinedError, NotEnoughPlayersError, DeckEmptyError)
 from internationalization import _, __, user_locale, game_locales
 from results import (add_call_bluff, add_choose_color, add_draw, add_gameinfo,
                      add_no_game, add_not_started, add_other_cards, add_pass,

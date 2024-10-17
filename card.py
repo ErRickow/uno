@@ -28,10 +28,10 @@ BLACK = 'x'
 COLORS = (RED, BLUE, GREEN, YELLOW)
 
 COLOR_ICONS = {
-    RED: '❤️',
-    BLUE: '💙',
-    GREEN: '💚',
-    YELLOW: '💛',
+    RED: '🌹',
+    BLUE: '🐳',
+    GREEN: '🌲',
+    YELLOW: '🌻',
     BLACK: '⬛️'
 }
 
@@ -300,12 +300,12 @@ STICKERS_OPTIONS = {
 # TODO: Support multiple card packs
 # For now, just use classic colorblind
 STICKERS = {
-    **CARDS_CLASSIC_COLORBLIND["normal"],
+    **CARDS_CLASSIC["normal"],
     **STICKERS_OPTIONS,
 }
 
 STICKERS_GREY = {
-    **CARDS_CLASSIC_COLORBLIND["not_playable"],
+    **CARDS_CLASSIC["not_playable"],
 }
 
 

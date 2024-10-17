@@ -29,21 +29,22 @@ from promotions import send_promotion
 @user_locale
 def help_handler(update: Update, context: CallbackContext):
     """Handler untuk perintah /help"""
-    help_text = _("Ikuti langkah-langkah ini:\n\n"
+    help_text = _("<blockquote>"
+      "Ikuti langkah-langkah ini:\n\n"
       "1. Tambahkan bot ini ke grup\n"
       "2. Di grup, mulai permainan baru dengan /new atau bergabung dengan permainan"
       " yang sedang berjalan dengan /join\n"
       "3. Setelah minimal dua pemain bergabung, mulai permainan dengan"
       " /start\n"
       "4. Ketik <code>@unobot</code> di kotak obrolan Anda dan tekan "
-      "<b>spasi</b>, atau klik teks <code>via @unobot</code> "
+      "<b>spasi</b>, atau klik teks <code>via @unoanjengbot</code> "
       "di samping pesan. Anda akan melihat kartu Anda (beberapa berwarna abu-abu), "
       "opsi tambahan seperti menggambar, dan <b>?</b> untuk melihat "
       "status permainan saat ini. <b>Kartu yang berwarna abu-abu</b> adalah kartu yang "
       "<b>tidak bisa dimainkan</b> saat ini. Ketuk opsi untuk melaksanakan "
       "aksi yang dipilih.\n"
-      "Pemain bisa bergabung dengan permainan kapan saja. Untuk keluar dari permainan, "
-      "gunakan /leave. Jika pemain memakan waktu lebih dari 90 detik untuk bermain, "
+      "Pemain bisa bergabung dengan permainan kapan saja. Untuk keluar dari permainan,\n"
+      "gunakan /leave. Jika pemain memakan waktu lebih dari 90 detik untuk bermain,\n"
       "Anda bisa menggunakan /skip untuk melewati pemain tersebut. Gunakan /notify_me untuk "
       "menerima pesan pribadi saat permainan baru dimulai.\n\n"
       "<b>Bahasa</b> dan pengaturan lainnya: /settings\n"
@@ -63,7 +64,8 @@ def help_handler(update: Update, context: CallbackContext):
       "<a href=\"https://telegram.me/storebot?start=UnoAnjengBot\">"
       "beri peringkat</a>, bergabunglah dengan "
       "<a href=\"https://telegram.me/pamerdong\">saluran pembaruan</a>"
-      " dan beli permainan kartu UNO.")
+      " dan beli permainan kartu UNO."
+      "</blockquote>")
 
     def _send():
       update.message.chat.send_message(
@@ -82,8 +84,8 @@ def modes(update: Update, context: CallbackContext):
       " 🎻 Mode Klasik menggunakan dek UNO konvensional dan tidak ada auto skip.\n"
       " 🚀 Mode Sanic menggunakan dek UNO konvensional dan bot secara otomatis melewati pemain jika dia terlalu lama bermain.\n"
       " 🐉 Mode Wild menggunakan dek dengan lebih banyak kartu spesial, variasi angka yang lebih sedikit, dan tidak ada auto skip.\n"
-      " ✍️ Mode Teks menggunakan dek UNO konvensional, tetapi alih-alih stiker, ia menggunakan teks.\n\n"
-      "Untuk mengubah mode permainan, PENCIPTA PERMAINAN harus mengetik nama panggilan bot dan spasi, "
+      " ✍️ Mode Teks menggunakan dek UNO konvensional, tetapi alih-alih stiker, mode ini menggunakan teks.\n\n"
+      "Untuk mengubah mode permainan, PEMBUAT PERMAINAN harus mengetik nama panggilan bot dan spasi, "
       "seperti saat bermain kartu, dan semua opsi mode permainan akan muncul.")
     send_async(context.bot, update.message.chat_id, text=modes_explanation,
                parse_mode=ParseMode.HTML, disable_web_page_preview=True)
@@ -91,8 +93,8 @@ def modes(update: Update, context: CallbackContext):
 @user_locale
 def source(update: Update, context: CallbackContext):
     """Handler untuk perintah /help"""
-    source_text = _("Bot ini dikembangkan oleh @chakszzz, seorang developer yang berdedikasi "
-      "untuk menciptakan pengalaman permainan yang seru dan menyenangkan. "
+    source_text = _("Bot ini dikembangkan oleh @chakszzz, seorang developer yang berdedikasi\n"
+      "untuk menciptakan pengalaman permainan yang seru dan menyenangkan. \n"
       "Jika Anda memiliki saran, ingin berkontribusi, atau hanya ingin mengobrol, "
       "Anda bisa menghubungi langsung melalui Telegram.\n")
 

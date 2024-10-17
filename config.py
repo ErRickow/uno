@@ -43,8 +43,8 @@ if isinstance(OPEN_LOBBY, str):
 if isinstance(ENABLE_TRANSLATIONS, str):
     ENABLE_TRANSLATIONS = ENABLE_TRANSLATIONS.lower() in ("yes", "true", "t", "1")
 
-DEFAULT_GAMEMODE = os.getenv("DEFAULT_GAMEMODE", config.get("default_gamemode", "fast"))
-WAITING_TIME = int(os.getenv("WAITING_TIME", config.get("waiting_time", 120)))
+DEFAULT_GAMEMODE = os.getenv("DEFAULT_GAMEMODE", config.get("default_gamemode", "wild"))
+WAITING_TIME = int(os.getenv("WAITING_TIME", config.get("waiting_time", 100)))
 TIME_REMOVAL_AFTER_SKIP = int(os.getenv("TIME_REMOVAL_AFTER_SKIP", config.get("time_removal_after_skip", 20)))
 MIN_FAST_TURN_TIME = int(os.getenv("MIN_FAST_TURN_TIME", config.get("min_fast_turn_time", 15)))
 MIN_PLAYERS = int(os.getenv("MIN_PLAYERS", config.get("min_players", 2)))

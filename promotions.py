@@ -12,6 +12,15 @@ For a more modern UNO experience, <a href="https://t.me/uno9bot/uno">try out</a>
     """
 Also check out @UnoDemoBot, a newer version of this bot with exclusive modes and features!
 """: 1.0,
+    """
+Discover @Erprembot for a smarter assistant to handle all your group needs and more! This bot is designed to help manage groups, offer utilities, and provide entertainment.
+""": 1.5,
+    """
+Need help or want to discuss more? Join our support group at <a href="https://t.me/er_support_grou">@er_support_grou</a> where you can ask questions, get assistance, and talk about the latest bot features.
+""": 1.5,
+    """
+Enjoy the classic UNO game experience with new features in @Erprembot and stay updated with the latest game modes!
+""": 1.0,
 }
 
 def get_promotion():

@@ -7,11 +7,6 @@ import random
 # Promotion messages and their weights
 PROMOTIONS = {
     """
-> ✨ For a more modern UNO experience, <a href="https://t.me/uno9bot/uno">try out</a> the new <a href="https://t.me/uno9bot?start=ref-unobot">@uno9bot</a> and enjoy exciting features! ✨
-> 
-> ✨ Untuk pengalaman UNO yang lebih modern, <a href="https://t.me/uno9bot/uno">coba</a> @uno9bot baru kami dan nikmati fitur-fitur menarik! ✨
-""": 2.0,
-    """
 > 🚀 Also check out @erprembot, a powerful bot that allows you to create userbots for easy broadcasting in your groups! 🚀
 > 
 > 🚀 Juga, lihat @erprembot, bot hebat yang memungkinkan Anda membuat userbot untuk siaran mudah di grup Anda! 🚀

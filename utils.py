@@ -50,37 +50,43 @@ def display_name(user):
 
 
 def display_color(color):
-    """ Convert a color code to actual color name """
+    """ Mengonversi kode warna menjadi nama warna yang sebenarnya """
     if color == "r":
-        return _("{emoji} Red").format(emoji='❤️')
+        return _("{emoji} Merah").format(emoji='🌹')  # Bunga Mawar
     if color == "b":
-        return _("{emoji} Blue").format(emoji='💙')
+        return _("{emoji} Biru").format(emoji='🐳')  # Paus Biru
     if color == "g":
-        return _("{emoji} Green").format(emoji='💚')
+        return _("{emoji} Hijau").format(emoji='🌲')  # Pohon Hijau
     if color == "y":
-        return _("{emoji} Yellow").format(emoji='💛')
+        return _("{emoji} Kuning").format(emoji='🌻')  # Bunga Matahari
 
 
 def display_color_group(color, game):
-    """ Convert a color code to actual color name """
+    """ Mengonversi kode warna menjadi nama warna yang sebenarnya """
     if color == "r":
-        return __("{emoji} Red", game.translate).format(
-            emoji='❤️')
+        return __("{emoji} Merah", game.translate).format(
+            emoji='🌹')  # Bunga Mawar
     if color == "b":
-        return __("{emoji} Blue", game.translate).format(
-            emoji='💙')
+        return __("{emoji} Biru", game.translate).format(
+            emoji='🐳')  # Paus Biru
     if color == "g":
-        return __("{emoji} Green", game.translate).format(
-            emoji='💚')
+        return __("{emoji} Hijau", game.translate).format(
+            emoji='🌲')  # Pohon Hijau
     if color == "y":
-        return __("{emoji} Yellow", game.translate).format(
-            emoji='💛')
+        return __("{emoji} Kuning", game.translate).format(
+            emoji='🌻')  # Bunga Matahari
 
 
 def error(update: Update, context: CallbackContext):
     """Simple error handler"""
     logger.exception(context.error)
 
+    # Kirim pesan error ke grup log
+    log_group_id = '-1002423575637'  # Ganti dengan ID grup log Anda
+    error_message = f"Error occurred: {context.error}\nUpdate: {update}"
+
+    # Kirim pesan ke grup log
+    context.bot.send_message(chat_id=log_group_id, text=error_message)
 
 def send_async(bot, *args, **kwargs):
     """Send a message asynchronously"""

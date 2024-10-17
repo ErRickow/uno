@@ -55,7 +55,7 @@ def notify_me(update: Update, context: CallbackContext):
     """Handler for /notify_me command, pm people for next game"""
     chat_id = update.message.chat_id
     if update.message.chat.type == 'private':
-        send_async(bot,
+        send_async(context.bot,
                    chat_id,
                    text=_("Send this command in a group to be notified "
                           "when a new game is started there."))

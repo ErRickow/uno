@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Telegram bot to play UNO in group chats
-# Copyright (c) 2016 Jannes Höke <uno@jhoeke.de>
+# Bot Telegram untuk bermain UNO dalam obrolan grup
+# Hak Cipta (c) 2016 Jannes Höke <uno@jhoeke.de>
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# Program ini adalah perangkat lunak bebas: Anda dapat mendistribusikan ulang dan/atau memodifikasi
+# di bawah ketentuan Lisensi Umum GNU Affero yang diterbitkan oleh
+# Free Software Foundation, baik versi 3 dari Lisensi, atau
+# (sesuai pilihan Anda) versi yang lebih baru.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
+# Program ini didistribusikan dengan harapan bahwa ini akan berguna,
+# tetapi TANPA GARANSI APA PUN; bahkan tanpa jaminan tersirat dari
+# DIPERDAGANGKAN atau KECOCOKAN UNTUK TUJUAN TERTENTU. Lihat
+# Lisensi Umum GNU Affero untuk detail lebih lanjut.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# Anda seharusnya telah menerima salinan Lisensi Umum GNU Affero
+# bersama dengan program ini. Jika tidak, lihat <http://www.gnu.org/licenses/>.
 
 
 from telegram import ReplyKeyboardMarkup, Update
@@ -34,8 +34,8 @@ def show_settings(update: Update, context: CallbackContext):
 
     if update.message.chat.type != 'private':
         send_async(context.bot, chat.id,
-                   text=_("Please edit your settings in a private chat with "
-                          "the bot."))
+                   text=_("Silakan ubah pengaturan Anda di obrolan pribadi dengan "
+                          "bot."))
         return
 
     us = UserSetting.get(id=update.message.from_user.id)
@@ -44,12 +44,12 @@ def show_settings(update: Update, context: CallbackContext):
         us = UserSetting(id=update.message.from_user.id)
 
     if not us.stats:
-        stats = '📊' + ' ' + _("Enable statistics")
+        stats = '📊' + ' ' + _("Aktifkan statistik")
     else:
-        stats = '❌' + ' ' + _("Delete all statistics")
+        stats = '❌' + ' ' + _("Hapus semua statistik")
 
-    kb = [[stats], ['🌍' + ' ' + _("Language")]]
-    send_async(context.bot, chat.id, text='🔧' + ' ' + _("Settings"),
+    kb = [[stats], ['🌍' + ' ' + _("Bahasa")]]
+    send_async(context.bot, chat.id, text='🔧' + ' ' + _("Pengaturan"),
                reply_markup=ReplyKeyboardMarkup(keyboard=kb,
                                                 one_time_keyboard=True))
 
@@ -63,13 +63,13 @@ def kb_select(update: Update, context: CallbackContext):
     if option == '📊':
         us = UserSetting.get(id=user.id)
         us.stats = True
-        send_async(context.bot, chat.id, text=_("Enabled statistics!"))
+        send_async(context.bot, chat.id, text=_("Statistik diaktifkan!"))
 
     elif option == '🌍':
         kb = [[locale + ' - ' + descr]
               for locale, descr
               in sorted(available_locales.items())]
-        send_async(context.bot, chat.id, text=_("Select locale"),
+        send_async(context.bot, chat.id, text=_("Pilih bahasa"),
                    reply_markup=ReplyKeyboardMarkup(keyboard=kb,
                                                     one_time_keyboard=True))
 
@@ -79,7 +79,7 @@ def kb_select(update: Update, context: CallbackContext):
         us.first_places = 0
         us.games_played = 0
         us.cards_played = 0
-        send_async(context.bot, chat.id, text=_("Deleted and disabled statistics!"))
+        send_async(context.bot, chat.id, text=_("Statistik dihapus dan dinonaktifkan!"))
 
 
 @user_locale
@@ -92,7 +92,7 @@ def locale_select(update: Update, context: CallbackContext):
         us = UserSetting.get(id=user.id)
         us.lang = option
         _.push(option)
-        send_async(context.bot, chat.id, text=_("Set locale!"))
+        send_async(context.bot, chat.id, text=_("Bahasa diatur!"))
         _.pop()
 
 def register():

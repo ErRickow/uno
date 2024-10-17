@@ -4,13 +4,13 @@
 # Bot Telegram untuk bermain UNO di obrolan grup
 # Hak Cipta (c) 2016 Jannes Höke <uno@jhoeke.de>
 #
-# Program ini adalah perangkat lunak bebas: Anda dapat mendistribusikan ulang dan/atau memodifikasinya
-# sesuai dengan ketentuan Lisensi Umum GNU Affero versi 3 atau versi yang lebih baru,
+# Program ini adalah perangkat lunak bebas: Anda dapat mendistribusikan ulang dan/or memodifikasinya
+# sesuai dengan ketentuan Lisensi Umum GNU Affero versi 3 or versi yang lebih baru,
 # sebagaimana diterbitkan oleh Free Software Foundation.
 #
 # Program ini didistribusikan dengan harapan agar bermanfaat,
 # tetapi TANPA JAMINAN; bahkan tanpa jaminan tersirat mengenai
-# KELAYAKAN UNTUK DIPERDAGANGKAN atau KESESUAIAN UNTUK TUJUAN TERTENTU.
+# KELAYAKAN UNTUK DIPERDAGANGKAN or KESESUAIAN UNTUK TUJUAN TERTENTU.
 # Lihat Lisensi Umum GNU Affero untuk detail lebih lanjut.
 #
 # Anda seharusnya telah menerima salinan Lisensi Umum GNU Affero
@@ -62,7 +62,7 @@ class Game(object):
         return players
 
     def start(self):
-        if self.mode == None atau self.mode != "wild":
+        if self.mode == None or self.mode != "wild":
             self.deck._fill_classic_()
         else:
             self.deck._fill_wild_()
@@ -91,7 +91,7 @@ class Game(object):
             self.set_mode(DEFAULT_GAMEMODE)
 
         # Kartu pertama tidak boleh kartu spesial
-        while not self.last_card atau self.last_card.special:
+        while not self.last_card or self.last_card.special:
             self.last_card = self.deck.draw()
             # Jika kartu yang ditarik spesial, kembalikan ke dek dan ulangi
             if self.last_card.special:
@@ -102,7 +102,7 @@ class Game(object):
     def play_card(self, card):
         """
         Memainkan kartu dan memicu efeknya.
-        Harus dipanggil hanya dari Player.play atau saat permainan dimulai untuk
+        Harus dipanggil hanya dari Player.play or saat permainan dimulai untuk
         memainkan kartu pertama
         """
         self.deck.dismiss(self.last_card)

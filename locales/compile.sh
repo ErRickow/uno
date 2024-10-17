@@ -5,7 +5,7 @@ if [ ${PWD##*/} = "locales" ];
 then
 	function compile {
 		cd './'$1'/LC_MESSAGES/'
-		msgfmt unobot.po -o unobot.mo
+		msgfmt unobot.pot -o unobot.mo
 		cd ../../
 	};
 else

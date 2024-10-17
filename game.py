@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Telegram bot to play UNO in group chats
-# Copyright (c) 2016 Jannes Höke <uno@jhoeke.de>
+# Bot Telegram untuk bermain UNO di obrolan grup
+# Hak Cipta (c) 2016 Jannes Höke <uno@jhoeke.de>
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# Program ini adalah perangkat lunak bebas: Anda dapat mendistribusikan ulang dan/atau memodifikasinya
+# sesuai dengan ketentuan Lisensi Umum GNU Affero versi 3 atau versi yang lebih baru,
+# sebagaimana diterbitkan oleh Free Software Foundation.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
+# Program ini didistribusikan dengan harapan agar bermanfaat,
+# tetapi TANPA JAMINAN; bahkan tanpa jaminan tersirat mengenai
+# KELAYAKAN UNTUK DIPERDAGANGKAN atau KESESUAIAN UNTUK TUJUAN TERTENTU.
+# Lihat Lisensi Umum GNU Affero untuk detail lebih lanjut.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
+# Anda seharusnya telah menerima salinan Lisensi Umum GNU Affero
+# bersama dengan program ini. Jika tidak, lihat <http://www.gnu.org/licenses/>.
 
 import logging
 from config import ADMIN_LIST, OPEN_LOBBY, DEFAULT_GAMEMODE, ENABLE_TRANSLATIONS
@@ -26,7 +24,7 @@ from deck import Deck
 import card as c
 
 class Game(object):
-    """ This class represents a game of UNO """
+    """ Kelas ini merepresentasikan permainan UNO """
     current_player = None
     reversed = False
     choosing_color = False
@@ -50,7 +48,7 @@ class Game(object):
 
     @property
     def players(self):
-        """Returns a list of all players in this game"""
+        """Mengembalikan daftar semua pemain dalam permainan ini"""
         players = list()
         if not self.current_player:
             return players
@@ -64,7 +62,7 @@ class Game(object):
         return players
 
     def start(self):
-        if self.mode == None or self.mode != "wild":
+        if self.mode == None atau self.mode != "wild":
             self.deck._fill_classic_()
         else:
             self.deck._fill_wild_()
@@ -76,26 +74,26 @@ class Game(object):
         self.mode = mode
 
     def reverse(self):
-        """Reverses the direction of game"""
+        """Membalikkan arah permainan"""
         self.reversed = not self.reversed
 
     def turn(self):
-        """Marks the turn as over and change the current player"""
-        self.logger.debug("Next Player")
+        """Menandai giliran telah berakhir dan mengganti pemain saat ini"""
+        self.logger.debug("Pemain Berikutnya")
         self.current_player = self.current_player.next
         self.current_player.drew = False
         self.current_player.turn_started = datetime.now()
         self.choosing_color = False
 
     def _first_card_(self):
-        # In case that the player did not select a game mode
+        # Jika pemain tidak memilih mode permainan
         if not self.deck.cards:
             self.set_mode(DEFAULT_GAMEMODE)
 
-        # The first card should not be a special card
-        while not self.last_card or self.last_card.special:
+        # Kartu pertama tidak boleh kartu spesial
+        while not self.last_card atau self.last_card.special:
             self.last_card = self.deck.draw()
-            # If the card drawn was special, return it to the deck and loop again
+            # Jika kartu yang ditarik spesial, kembalikan ke dek dan ulangi
             if self.last_card.special:
                 self.deck.dismiss(self.last_card)
 
@@ -103,37 +101,37 @@ class Game(object):
 
     def play_card(self, card):
         """
-        Plays a card and triggers its effects.
-        Should be called only from Player.play or on game start to play the
-        first card
+        Memainkan kartu dan memicu efeknya.
+        Harus dipanggil hanya dari Player.play atau saat permainan dimulai untuk
+        memainkan kartu pertama
         """
         self.deck.dismiss(self.last_card)
         self.last_card = card
 
-        self.logger.info("Playing card " + repr(card))
+        self.logger.info("Memainkan kartu " + repr(card))
         if card.value == c.SKIP:
             self.turn()
         elif card.special == c.DRAW_FOUR:
             self.draw_counter += 4
-            self.logger.debug("Draw counter increased by 4")
+            self.logger.debug("Hitungan draw meningkat 4")
         elif card.value == c.DRAW_TWO:
             self.draw_counter += 2
-            self.logger.debug("Draw counter increased by 2")
+            self.logger.debug("Hitungan draw meningkat 2")
         elif card.value == c.REVERSE:
-            # Special rule for two players
+            # Aturan khusus untuk dua pemain
             if self.current_player == self.current_player.next.next:
                 self.turn()
             else:
                 self.reverse()
 
-        # Don't turn if the current player has to choose a color
+        # Jangan pindah giliran jika pemain saat ini harus memilih warna
         if card.special not in (c.CHOOSE, c.DRAW_FOUR):
             self.turn()
         else:
-            self.logger.debug("Choosing Color...")
+            self.logger.debug("Memilih Warna...")
             self.choosing_color = True
 
     def choose_color(self, color):
-        """Carries out the color choosing and turns the game"""
+        """Melaksanakan pemilihan warna dan beralih giliran"""
         self.last_card.color = color
         self.turn()

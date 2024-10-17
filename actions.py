@@ -49,7 +49,7 @@ def do_skip(bot, player, job_queue=None):
         send_async(bot, chat.id,
                    text=__("Waiting time to skip this player has "
                         "been reduced to {time} seconds.\n"
-                        "Next player: {name}", multi=game.translate)
+                        "Player Selanjutnya: {name}", multi=game.translate)
                    .format(time=n,
                            name=display_name(next_player.user))
         )
@@ -63,21 +63,21 @@ def do_skip(bot, player, job_queue=None):
         try:
             gm.leave_game(skipped_player.user, chat)
             send_async(bot, chat.id,
-                       text=__("{name1} ran out of time "
-                            "and has been removed from the game!\n"
-                            "Next player: {name2}", multi=game.translate)
+                       text=__("{name} HABIS WAKTU LO KEBANYAKAN MIKIR "
+                               "DAN DI KELUARKAN DALAM GAME!\n"
+                            "Player Selanjutnya: {name2}", multi=game.translate)
                        .format(name1=display_name(skipped_player.user),
                                name2=display_name(next_player.user)))
-            logger.info("{player} was skipped! "
+            logger.info("{player} Telah Skip! "
                     .format(player=display_name(player.user)))
             if job_queue:
                 start_player_countdown(bot, game, job_queue)
 
         except NotEnoughPlayersError:
             send_async(bot, chat.id,
-                       text=__("{name} ran out of time "
-                               "and has been removed from the game!\n"
-                               "The game ended.", multi=game.translate)
+                       text=__("{name} HABIS WAKTU LO KEBANYAKAN MIKIR "
+                               "DAN DI KELUARKAN DALAM GAME!\n"
+                               "Game Selesai.", multi=game.translate)
                        .format(name=display_name(skipped_player.user)))
 
             gm.end_game(chat, skipped_player.user)
@@ -100,10 +100,10 @@ def do_play_card(bot, player, result_id):
         us.cards_played += 1
 
     if game.choosing_color:
-        send_async(bot, chat.id, text=__("Please choose a color", multi=game.translate))
+        send_async(bot, chat.id, text=__("PILIH WARNA NYA TOLOL", multi=game.translate))
 
     if len(player.cards) == 1:
-        send_async(bot, chat.id, text="UNO!")
+        send_async(bot, chat.id, text="UNO HAMPIR MENANG COK!")
 
     if len(player.cards) == 0:
         send_async(bot, chat.id,
@@ -122,7 +122,7 @@ def do_play_card(bot, player, result_id):
             gm.leave_game(user, chat)
         except NotEnoughPlayersError:
             send_async(bot, chat.id,
-                       text=__("Game ended!", multi=game.translate))
+                       text=__("Game Selesai!", multi=game.translate))
 
             us2 = UserSetting.get(id=game.current_player.user.id)
             if us2 and us2.stats:
@@ -140,7 +140,7 @@ def do_draw(bot, player):
         player.draw()
     except DeckEmptyError:
         send_async(bot, player.game.chat.id,
-                   text=__("There are no more cards in the deck.",
+                   text=__("Kartu lo abis.",
                            multi=game.translate))
 
     if (game.last_card.value == c.DRAW_TWO or
@@ -156,7 +156,7 @@ def do_call_bluff(bot, player):
 
     if player.prev.bluffing:
         send_async(bot, chat.id,
-                   text=__("Bluff called! Giving 4 cards to {name}",
+                   text=__("Bilang Bluff! Berikan 4 kartu ke {name}",
                            multi=game.translate)
                    .format(name=player.prev.user.first_name))
 
@@ -164,13 +164,13 @@ def do_call_bluff(bot, player):
             player.prev.draw()
         except DeckEmptyError:
             send_async(bot, player.game.chat.id,
-                       text=__("There are no more cards in the deck.",
+                       text=__("Kartu lo gaada.",
                                multi=game.translate))
 
     else:
         game.draw_counter += 2
         send_async(bot, chat.id,
-                   text=__("{name1} didn't bluff! Giving 6 cards to {name2}",
+                   text=__("{name1} kga bluff! Berikan 6 kartu ke {name2}",
                            multi=game.translate)
                    .format(name1=player.prev.user.first_name,
                            name2=player.user.first_name))
@@ -178,7 +178,7 @@ def do_call_bluff(bot, player):
             player.draw()
         except DeckEmptyError:
             send_async(bot, player.game.chat.id,
-                       text=__("There are no more cards in the deck.",
+                       text=__("kartu lo abis.",
                                multi=game.translate))
 
     game.turn()

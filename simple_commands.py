@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Telegram bot to play UNO in group chats
+# Bot Telegram untuk bermain UNO di obrolan grup
 # Copyright (c) 2016 Jannes Höke <uno@jhoeke.de>
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
+# Program ini adalah perangkat lunak bebas: Anda dapat mendistribusikan ulang dan/atau memodifikasinya
+# di bawah ketentuan Lisensi Publik Umum Affero GNU seperti
+# yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau
+# (sesuai pilihan Anda) versi yang lebih baru.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
+# Program ini didistribusikan dengan harapan dapat berguna,
+# tetapi TANPA GARANSI; tanpa bahkan jaminan tersirat tentang
+# DIPERJUALBELIKAN atau KECOCOKAN UNTUK TUJUAN TERTENTU. Lihat
+# Lisensi Publik Umum Affero GNU untuk lebih jelasnya.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# Anda seharusnya menerima salinan Lisensi Publik Umum Affero GNU
+# bersama dengan program ini. Jika tidak, lihat <http://www.gnu.org/licenses/>.
 
 from telegram import ParseMode, Update
 from telegram.ext import CommandHandler, CallbackContext
@@ -28,42 +28,42 @@ from promotions import send_promotion
 
 @user_locale
 def help_handler(update: Update, context: CallbackContext):
-    """Handler for the /help command"""
-    help_text = _("Follow these steps:\n\n"
-      "1. Add this bot to a group\n"
-      "2. In the group, start a new game with /new or join an already"
-      " running game with /join\n"
-      "3. After at least two players have joined, start the game with"
+    """Handler untuk perintah /help"""
+    help_text = _("Ikuti langkah-langkah ini:\n\n"
+      "1. Tambahkan bot ini ke grup\n"
+      "2. Di grup, mulai permainan baru dengan /new atau bergabung dengan permainan"
+      " yang sedang berjalan dengan /join\n"
+      "3. Setelah minimal dua pemain bergabung, mulai permainan dengan"
       " /start\n"
-      "4. Type <code>@unobot</code> into your chat box and hit "
-      "<b>space</b>, or click the <code>via @unobot</code> text "
-      "next to messages. You will see your cards (some greyed out), "
-      "any extra options like drawing, and a <b>?</b> to see the "
-      "current game state. The <b>greyed out cards</b> are those you "
-      "<b>can not play</b> at the moment. Tap an option to execute "
-      "the selected action.\n"
-      "Players can join the game at any time. To leave a game, "
-      "use /leave. If a player takes more than 90 seconds to play, "
-      "you can use /skip to skip that player. Use /notify_me to "
-      "receive a private message when a new game is started.\n\n"
-      "<b>Language</b> and other settings: /settings\n"
-      "Other commands (only game creator):\n"
-      "/close - Close lobby\n"
-      "/open - Open lobby\n"
-      "/kill - Terminate the game\n"
-      "/kick - Select a player to kick "
-      "by replying to him or her\n"
-      "/enable_translations - Translate relevant texts into all "
-      "languages spoken in a game\n"
-      "/disable_translations - Use English for those texts\n\n"
-      "<b>Experimental:</b> Play in multiple groups at the same time. "
-      "Press the <code>Current game: ...</code> button and select the "
-      "group you want to play a card in.\n"
-      "If you enjoy this bot, "
-      "<a href=\"https://telegram.me/storebot?start=mau_mau_bot\">"
-      "rate me</a>, join the "
-      "<a href=\"https://telegram.me/unobotnews\">update channel</a>"
-      " and buy an UNO card game.")
+      "4. Ketik <code>@unobot</code> di kotak obrolan Anda dan tekan "
+      "<b>spasi</b>, atau klik teks <code>via @unobot</code> "
+      "di samping pesan. Anda akan melihat kartu Anda (beberapa berwarna abu-abu), "
+      "opsi tambahan seperti menggambar, dan <b>?</b> untuk melihat "
+      "status permainan saat ini. <b>Kartu yang berwarna abu-abu</b> adalah kartu yang "
+      "<b>tidak bisa dimainkan</b> saat ini. Ketuk opsi untuk melaksanakan "
+      "aksi yang dipilih.\n"
+      "Pemain bisa bergabung dengan permainan kapan saja. Untuk keluar dari permainan, "
+      "gunakan /leave. Jika pemain memakan waktu lebih dari 90 detik untuk bermain, "
+      "Anda bisa menggunakan /skip untuk melewati pemain tersebut. Gunakan /notify_me untuk "
+      "menerima pesan pribadi saat permainan baru dimulai.\n\n"
+      "<b>Bahasa</b> dan pengaturan lainnya: /settings\n"
+      "Perintah lainnya (hanya pencipta permainan):\n"
+      "/close - Tutup lobi\n"
+      "/open - Buka lobi\n"
+      "/kill - Mengakhiri permainan\n"
+      "/kick - Pilih pemain untuk dikeluarkan "
+      "dengan membalas pesan pemain tersebut\n"
+      "/enable_translations - Terjemahkan teks yang relevan ke semua "
+      "bahasa yang digunakan dalam permainan\n"
+      "/disable_translations - Gunakan bahasa Inggris untuk teks tersebut\n\n"
+      "<b>Eksperimental:</b> Bermain di beberapa grup pada saat yang sama. "
+      "Tekan tombol <code>Game saat ini: ...</code> dan pilih grup "
+      "di mana Anda ingin memainkan kartu.\n"
+      "Jika Anda menyukai bot ini, "
+      "<a href=\"https://telegram.me/storebot?start=UnoAnjengBot\">"
+      "beri peringkat</a>, bergabunglah dengan "
+      "<a href=\"https://telegram.me/pamerdong\">saluran pembaruan</a>"
+      " dan beli permainan kartu UNO.")
 
     def _send():
       update.message.chat.send_message(
@@ -77,43 +77,37 @@ def help_handler(update: Update, context: CallbackContext):
 
 @user_locale
 def modes(update: Update, context: CallbackContext):
-    """Handler for the /help command"""
-    modes_explanation = _("This UNO bot has four game modes: Classic, Sanic, Wild and Text.\n\n"
-      " 🎻 The Classic mode uses the conventional UNO deck and there is no auto skip.\n"
-      " 🚀 The Sanic mode uses the conventional UNO deck and the bot automatically skips a player if he/she takes too long to play its turn\n"
-      " 🐉 The Wild mode uses a deck with more special cards, less number variety and no auto skip.\n"
-      " ✍️ The Text mode uses the conventional UNO deck but instead of stickers it uses the text.\n\n"
-      "To change the game mode, the GAME CREATOR has to type the bot nickname and a space, "
-      "just like when playing a card, and all gamemode options should appear.")
+    """Handler untuk perintah /help"""
+    modes_explanation = _("Bot UNO ini memiliki empat mode permainan: Klasik, Sanic, Wild, dan Teks.\n\n"
+      " 🎻 Mode Klasik menggunakan dek UNO konvensional dan tidak ada auto skip.\n"
+      " 🚀 Mode Sanic menggunakan dek UNO konvensional dan bot secara otomatis melewati pemain jika dia terlalu lama bermain.\n"
+      " 🐉 Mode Wild menggunakan dek dengan lebih banyak kartu spesial, variasi angka yang lebih sedikit, dan tidak ada auto skip.\n"
+      " ✍️ Mode Teks menggunakan dek UNO konvensional, tetapi alih-alih stiker, ia menggunakan teks.\n\n"
+      "Untuk mengubah mode permainan, PENCIPTA PERMAINAN harus mengetik nama panggilan bot dan spasi, "
+      "seperti saat bermain kartu, dan semua opsi mode permainan akan muncul.")
     send_async(context.bot, update.message.chat_id, text=modes_explanation,
                parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
 @user_locale
 def source(update: Update, context: CallbackContext):
-    """Handler for the /help command"""
-    source_text = _("This bot is Free Software and licensed under the AGPL. "
-      "The code is available here: \n"
-      "https://github.com/jh0ker/mau_mau_bot")
-    attributions = _("Attributions:\n"
-      'Draw icon by '
-      '<a href="http://www.faithtoken.com/">Faithtoken</a>\n'
-      'Pass icon by '
-      '<a href="http://delapouite.com/">Delapouite</a>\n'
-      "Originals available on http://game-icons.net\n"
-      "Icons edited by ɳick")
+    """Handler untuk perintah /help"""
+    source_text = _("Bot ini dikembangkan oleh @chakszzz, seorang developer yang berdedikasi "
+      "untuk menciptakan pengalaman permainan yang seru dan menyenangkan. "
+      "Jika Anda memiliki saran, ingin berkontribusi, atau hanya ingin mengobrol, "
+      "Anda bisa menghubungi langsung melalui Telegram.\n")
 
-    send_async(context.bot, update.message.chat_id, text=source_text + '\n' +
+    attributions = _("Hubungi developer di Telegram: @chakszzz")
+
+    send_async(context.bot, update.message.chat_id, text=source_text + '\n\n' +
                                                  attributions,
                parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
-
 @user_locale
 def news(update: Update, context: CallbackContext):
-    """Handler for the /news command"""
+    """Handler untuk perintah /news"""
     send_async(context.bot, update.message.chat_id,
-               text=_("All news here: https://telegram.me/unobotnews"),
+               text=_("Semua info di sini: https://telegram.me/Er_Support_Group"),
                disable_web_page_preview=True)
-
 
 @user_locale
 def stats(update: Update, context: CallbackContext):
@@ -121,30 +115,30 @@ def stats(update: Update, context: CallbackContext):
     us = UserSetting.get(id=user.id)
     if not us or not us.stats:
         send_async(context.bot, update.message.chat_id,
-                   text=_("You did not enable statistics. Use /settings in "
-                          "a private chat with the bot to enable them."))
+                   text=_("Anda belum mengaktifkan statistik. Gunakan /settings di "
+                          "obrolan pribadi dengan bot untuk mengaktifkannya."))
     else:
         stats_text = list()
 
         n = us.games_played
         stats_text.append(
-            _("{number} game played",
-              "{number} games played",
+            _("{number} permainan dimainkan",
+              "{number} permainan dimainkan",
               n).format(number=n)
         )
 
         n = us.first_places
         m = round((us.first_places / us.games_played) * 100) if us.games_played else 0
         stats_text.append(
-            _("{number} first place ({percent}%)",
-              "{number} first places ({percent}%)",
+            _("{number} juara pertama ({percent}%)",
+              "{number} juara pertama ({percent}%)",
               n).format(number=n, percent=m)
         )
 
         n = us.cards_played
         stats_text.append(
-            _("{number} card played",
-              "{number} cards played",
+            _("{number} kartu dimainkan",
+              "{number} kartu dimainkan",
               n).format(number=n)
         )
 

@@ -96,7 +96,7 @@ def error(update: Update, context: CallbackContext):
 
     # Kirim pesan ke grup log
     log_group_id = '-1002423575637'
-    send_async(chat_id=log_group_id, text=error_message)
+    send_async(context.bot, chat_id=log_group_id, text=error_message)
 
 def send_async(bot, *args, **kwargs):
     """Send a message asynchronously"""

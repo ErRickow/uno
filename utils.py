@@ -76,27 +76,38 @@ def display_color_group(color, game):
         return __("{emoji} Kuning", game.translate).format(
             emoji='🌻')  # Bunga Matahari
 
-
 def error(update: Update, context: CallbackContext):
-    """Simple error handler"""
-    logger.exception(context.error)
+    """Simple error handler to log exceptions and send them to a logging group."""
+    # Log exception in the console
+    logger.error(msg="Exception while handling an update:", exc_info=context.error)
+
+    # Initialize error message
+    error_message = f"<b>Error occurred</b>: <pre>{context.error}</pre>"
 
     if update:
-        user = update.effective_user  # Pengguna yang memicu error
-        chat = update.effective_chat  # Chat tempat error terjadi
-        message = update.message  # Pesan yang memicu error (jika ada)
+        # Extract user, chat, and message details if available
+        user = update.effective_user
+        chat = update.effective_chat
+        message = update.message
 
-        # Contoh log detail
-        error_message = (
-            f"<b>Error occurred in chat {chat.id} by user {user.id} ({user.username}):</b> "
-            f"<pre>{context.error}</pre>\nUpdate: {update}"
-        )
-    else:
-        error_message = f"<b>ERROR ANJENG</b>: <pre>{context.error}</pre>"
+        if user and chat:
+            error_message = (
+                f"<b>Error occurred in chat {chat.id} by user {user.id} ({user.username}):</b> "
+                f"<pre>{context.error}</pre>\n"
+                f"Update: {update}"
+            )
 
-    # Kirim pesan ke grup log
     log_group_id = '-1002423575637'
-    send_async(context.bot, chat_id=log_group_id, text=error_message)
+
+    try:
+        context.bot.send_message(
+            chat_id=log_group_id, 
+            text=error_message,
+            parse_mode="HTML"  # Use HTML format for bold and pre tags
+        )
+    except Exception as e:
+        # If sending log message fails, log the error locally
+        logger.error(f"Failed to send error log to group: {e}")
 
 def send_async(bot, *args, **kwargs):
     """Send a message asynchronously"""

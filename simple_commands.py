@@ -25,51 +25,6 @@ from utils import send_async
 from shared_vars import dispatcher
 from internationalization import _, user_locale
 from promotions import send_promotion
-from telegram.error import BadRequest
-
-MUST_JOIN = ["Er_support_group", "ZeebSupport"]
-
-def must_join_channel(update: Update, context: CallbackContext):
-    user = update.effective_user
-    bot = context.bot
-
-    if not MUST_JOIN:
-        return
-
-    for channel in MUST_JOIN:
-        try:
-            # Memeriksa apakah pengguna sudah menjadi anggota channel
-            member = bot.get_chat_member(channel, user.id)
-        except BadRequest:
-            notify_user_must_join(update, context, channel, user)
-            return
-
-def notify_user_must_join(update: Update, context: CallbackContext, channel, user):
-    """Notifikasi pengguna untuk bergabung ke channel."""
-    bot = context.bot
-
-    # Membuat tautan undangan untuk channel
-    if channel.isalpha():
-        link = f"https://t.me/{channel}"
-    else:
-        chat_info = bot.get_chat(channel)
-        link = chat_info.invite_link
-
-    try:
-        update.message.reply_photo(
-            photo="https://ibb.co.com/nbD5ZNk",
-            caption=f"Untuk menggunakan bot ini, kamu harus bergabung dulu ke channel kami [di sini]({link}). Setelah bergabung, silakan ketik /start kembali.",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("🔗 GABUNG SEKARANG", url=link),
-                    ]
-                ]
-            ),
-            parse_mode=ParseMode.HTML
-        )
-    except Exception as e:
-        print(f"Error saat mengirim pesan: {e}")
 
 @user_locale
 def help_handler(update: Update, context: CallbackContext):

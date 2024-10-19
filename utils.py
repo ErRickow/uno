@@ -85,16 +85,17 @@ def error(update: Update, context: CallbackContext):
     error_message = f"<b>Error occurred</b>: <pre>{context.error}</pre>"
 
     if update:
-        # Extract user, chat, and message details if available
+        # Extract user and chat details if available
         user = update.effective_user
         chat = update.effective_chat
-        message = update.message
 
         if user and chat:
+            # If the chat is a group, include the group name
+            chat_title = f"Group: {chat.title}" if chat.title else "Private Chat"
             error_message = (
-                f"<b>Error occurred in chat {chat.id} by user {user.id} ({user.username}):</b> "
-                f"<pre>{context.error}</pre>\n"
-                f"Update: {update}"
+                f"<b>Error occurred in {chat_title} (Chat ID: {chat.id}) "
+                f"by user {user.id} ({user.username}):</b>\n"
+                f"<pre>{context.error}</pre>"
             )
 
     log_group_id = '-1002423575637'
